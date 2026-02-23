@@ -20,23 +20,18 @@ spring:
               - DELETE
               - OPTIONS
             allowedHeaders: "*"
-      #Habilitar descubrimiento de servicios para rutas dinamicas:
-#      discovery:
-#        locator:
-#          enabled: true
-#          lower-case-service-id: true
       #Definicion de rutas hacia los microservicios:
       routes:
-        #Ruta1: hacia el microservicio relatospapel-service:
+        #Ruta1: hacia el microservicio catalogue-service:
         - id: catalogue-service
-          uri: lb://catalogue-service
+          uri: https://ms-books-catalogue-v11-production.up.railway.app
           predicates:
             - Path=/api/catalogue/**
           filters:
             - StripPrefix=2
-        #Ruta2: hacia el microservicio relatospapel-service:
+        #Ruta2: hacia el microservicio payments-service:
         - id: payments-service
-          uri: lb://payments-service
+          uri: https://ms-books-payments-v11-production.up.railway.app
           predicates:
             - Path=/api/payments/**
           filters:
